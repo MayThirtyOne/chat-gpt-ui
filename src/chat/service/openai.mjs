@@ -17,7 +17,7 @@ export async function* streamAsyncIterable(stream) {
 }
 
 export const fetchBaseUrl = (baseUrl) =>
-  baseUrl || "https://api.openai.com/v1/chat/completions";
+  baseUrl || "http://localhost:3005/chat/completions";
 
 export const fetchHeaders = (options = {}) => {
   const { organizationId, apiKey } = options;
@@ -60,6 +60,7 @@ export const fetchAction = async ({
   options = {},
   signal,
 }) => {
+  console.log('HERE')
   const { baseUrl, ...rest } = options;
   const url = fetchBaseUrl(baseUrl);
   const headers = fetchHeaders({ ...rest });
@@ -70,6 +71,7 @@ export const fetchAction = async ({
     body,
     signal,
   });
+  console.log({response})
   return response;
 };
 
